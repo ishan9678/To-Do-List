@@ -1,0 +1,38 @@
+
+<%- include("header") -%>
+
+<body>
+
+        <div class="box" id="heading">
+            <h1><%=listTitle%> </h1>
+        </div>
+        
+
+        <div class="box">
+            <% items.forEach(item=>{ %>
+                <div class="item">
+                    <input type="checkbox">
+                    <p><%=item.name%></p>
+                    <div class="trash-icon">
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="customListTitle" value="<%=listTitle%>">
+                            <button type="submit" name="itemId" value="<%=item._id%>" class="delete">
+                                <%- include("trash-icon") -%>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+                
+            
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                <input type="hidden" name="listTitle" value="<%=listTitle%>">
+                <button type="submit" class="add" name="button">+</button>
+            </form>
+        </div>
+            
+        
+</body>
+
+</html>
